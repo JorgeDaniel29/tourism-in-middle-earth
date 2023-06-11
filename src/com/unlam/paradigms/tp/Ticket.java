@@ -2,34 +2,25 @@ package com.unlam.paradigms.tp;
 
 public class Ticket {
     private User user;
-    private Offer offer;
+    private TourismOption tourOption;
     
-    public Ticket(User user, Offer offer) {
+    public Ticket(User user, TourismOption tourOption) {
         this.user = user;
-        this.offer = offer;
-        //this.setTotalAmount();
-        //this.setTotalHours();
+        this.tourOption = tourOption;
     }
-    
-    /*private void setTotalAmount() {
-        totalAmount = 0;
-        for(Offer offer : this.offers) {
-            this.totalAmount += offer.getPrice();
-        }
-    }*/
     
     public User getUser() {
         return user;
     }
     
-    public Offer getOffer() {
-        return offer;
+    public TourismOption getOffer() {
+        return tourOption;
     }
     
     public void printDetail() {
         System.out.println("Usuario: "+user.getUserName());
-        System.out.println("Compro: "+offer.getName());
-        System.out.println("Al precio de: "+offer.getPrice());
-        System.out.println("Debera tener disponible: "+offer.getHours()+" horas.");
+        System.out.println("Compro: "+tourOption.getName());
+        System.out.println("Al precio de: "+tourOption.getAmountToPay());
+        System.out.println("Debera tener disponible: "+tourOption.getDuration()+" horas.");
     }
 }
