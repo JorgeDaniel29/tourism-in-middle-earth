@@ -3,7 +3,10 @@ package com.unlam.paradigms.tp;
 import java.util.List;
 
 public class OfferAbsolute extends Offer {
+	
+	final Double amountToPay;
 
+<<<<<<< HEAD
 	public OfferAbsolute(String name, TourismOptionType type, List<TourismOption> attractions) {
 		super(name, type, attractions);
 	}
@@ -12,10 +15,16 @@ public class OfferAbsolute extends Offer {
 	public Double getBaseAmount() {
 		// TODO Auto-generated method stub
 		return null;
+=======
+	public OfferAbsolute(String name, TourismOptionType type, List<TourismOption> options, final String parameter) {
+		super(name, type, options);
+		this.amountToPay = Double.valueOf(parameter);
+>>>>>>> master
 	}
 
 	@Override
 	public Double getAmountToPay() {
+<<<<<<< HEAD
 		double totalPrice = 0;
 		
 		for (TourismOption attraction : super.getAttractions()) {
@@ -31,6 +40,9 @@ public class OfferAbsolute extends Offer {
 		}
 		
 		return totalPrice;
+=======
+		return amountToPay;
+>>>>>>> master
 	}
 
 }

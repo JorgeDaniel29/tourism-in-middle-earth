@@ -16,7 +16,11 @@ public final class Manager {
 	private static final String ATTRACTIONS_FILE_NAME = "attracctions.txt";
 	private static final String OFFERS_FILE_NAME = "offers.txt";
 	private static final String ITINERARY_FILE_NAME = "itinerary.txt";
+<<<<<<< HEAD
 	private static final String SOURCE_PATH = "src/source-data/";
+=======
+	private static final String SOURCE_PATH = "../src/source-data/";
+>>>>>>> master
 
 	private List<TourismOption> options;
 	private List<OfferDescription> offerDescriptions;
@@ -30,8 +34,12 @@ public final class Manager {
         
         return INSTANCE;
     }
+	
+	private Manager () {
+		
+	}
 
-	private Manager() throws IOException {
+	public void initialize() throws IOException {
 		final FileReader attFileReader = new FileReader(SOURCE_PATH + ATTRACTIONS_FILE_NAME);
 		final FileReader offFileReader = new FileReader(SOURCE_PATH + OFFERS_FILE_NAME);
 		final BufferedReader attBufferReader = new BufferedReader(attFileReader);
@@ -62,9 +70,10 @@ public final class Manager {
 				final List<String> attractions = List.of(parameterPartipant[1].split("\\|"));
 				final OfferType offerType = OfferType.valueOf(parameterPartipant[2]);
 				final TourismOptionType tourismOptionType = TourismOptionType.valueOf(parameterPartipant[3]);
+				final String offerParameter = parameterPartipant[4];
 
 				offerDescriptions
-						.add(new OfferDescription(offerDescriptionName, attractions, offerType, tourismOptionType));
+						.add(new OfferDescription(offerDescriptionName, attractions, offerType, tourismOptionType, offerParameter));
 			}
 		}
 
@@ -167,11 +176,20 @@ public final class Manager {
 		return new TourismOptionIterator(user, filterByUserPreferences(user, orderByType(user, options)));
 	}
 
-	public Ticket createTicket(final User user, final TourismOption option) throws IOException {
+	public void update(final User user, final TourismOption option) {
+		user.updateUser(option);
+		option.reserve(user.getUserName());
+	}
+	
+	public void generateTicketFile(final List<Ticket> tickets)  throws IOException {
 		final FileWriter fileWriter = new FileWriter(ITINERARY_FILE_NAME);
 		final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-		return new Ticket(user, option);
+		
+		for (Ticket ticket : tickets) {
+			bufferedWriter.append(ticket.toString() + "\n");
+		}
+		
+		bufferedWriter.close();
 	}
 
 }
