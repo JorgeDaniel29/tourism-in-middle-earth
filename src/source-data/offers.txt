@@ -1,3 +1,4 @@
+PACKAGE|ATTRACTION|OFFER|TOURISM OPTION TYPE|FREE ATTRACTION
 Paquete1,Mordor|Moria|Mina,AxB,AVENTURA,Moria|Meme
 Paquete2,Mordor|Moria|Bosque Negro,ABSOLUTE,PAISAJE,20
 Paquete3,Mordor|Moria|Lothlórien,DISCOUNT,PAISAJE,30
